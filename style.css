@@ -1,0 +1,16 @@
+#main-field {
+    background-color: cornflowerblue;
+}
+
+.task {
+    padding-bottom: 70px;
+}
+
+form {
+    padding-bottom: 20px;
+}
+
+/* input[type="text"] {
+    background-color: rgb(131, 168, 237);
+    color: blueviolet;
+} */

@@ -1,5 +1,7 @@
 window.onload = function () {
-    document.getElementById("submit-button").onclick = buttonAction;
+    //document.getElementById("submit-button").onclick = buttonAction;
+
+    console.log(unitTest() ? "Tests passed" : "Tests failed");
 };
 
 function buttonAction() {
@@ -13,26 +15,70 @@ function buttonAction() {
     return false;
 }
 
-function displayPositiveMessage(alertDiv ,message) {
-    alertDiv.innerHTML = "";
-    alertDiv.className = "alert alert-success";
+function checkIfSemiprimeButtonAction() {
+    console.log("Button clicked");
 
-    let content = document.createTextNode(message);
-
-    let strong = document.createElement("strong");
-    strong.appendChild(content);
-    
-    alertDiv.appendChild(strong);
 }
 
-function displayNegativeMessage(alertDiv ,message) {
+function unitTest() {
+    let result = isSemiPrime(57);
+    if (!result.answer)
+        return false;
+
+    if (!isSemiPrime(121).answer)
+        return false;
+    
+    if (isSemiPrime(186).answer)
+        return false;
+
+    return true;
+}
+
+class Result {
+    constructor(answer) {
+        this.answer = answer;
+        this.dividers = new Array;
+    }
+}
+
+function isSemiPrime(number) {
+    if (number <= 0 || !Number.isInteger(number))
+        return false;
+
+    let a = findSmalestDivider(number);
+    if (a==number) return new Result(false);
+    number /= a;
+
+    let b = findSmalestDivider(number);
+    if (b != number) return new Result(false);
+    
+    let result = new Result(true);
+    result.dividers = [a, b];
+    return result;
+}
+
+function findSmalestDivider(number) {
+    if (number % 2 == 0)
+        return 2;
+    
+    for (let i=3; i*i <= number; i+=2) {
+        if (number % i == 0)
+            return i;
+    }
+
+    return number;
+}
+
+function displayPositiveMessage(alertDiv ,textNode) {
+    alertDiv.innerHTML = "";
+    alertDiv.className = "alert alert-success";
+    
+    alertDiv.appendChild(textNode);
+}
+
+function displayNegativeMessage(alertDiv ,textNode) {
     alertDiv.innerHTML = "";
     alertDiv.className = "alert alert-danger";
-
-    let content = document.createTextNode(message);
-
-    let strong = document.createElement("strong");
-    strong.appendChild(content);
     
-    alertDiv.appendChild(strong);
+    alertDiv.appendChild(textNode);
 }

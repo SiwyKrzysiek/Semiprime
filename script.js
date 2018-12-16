@@ -37,6 +37,17 @@ class Result {
     }
 }
 
+function semiprimesInRange(begin, end) {
+    let result = [];
+
+    for (let i=begin; i<=end; i++) {
+        if (isSemiPrime(i).answer)
+            result.push(i);
+    }
+
+    return result;
+}
+
 function isSemiPrime(number) {
     if (number <= 0 || !Number.isInteger(number))
         return false;

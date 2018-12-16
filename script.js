@@ -6,7 +6,7 @@ window.onload = function () {
 
 function checkIfSemiprimeButtonAction() {
     //console.log("Button clicked");
-    let number = parseInt(document.getElementById("number"));
+    let number = parseInt(document.getElementById("number").value);
 
     let result = isSemiPrime(number);
     let message = generateMessage(result);
@@ -69,19 +69,27 @@ function findSmalestDivider(number) {
 }
 
 function generateMessage(result) {
-    if (result.answer) {
-        let message = document.createElement("span");
+    let message = document.createElement("span");
 
+    if (result.answer) {
+        let strong = document.createElement("strong");
+        strong.appendChild(document.createTextNode("It's semiprime!"));
+        message.appendChild(strong);
+
+        let a = result.dividers[0];
+        let b = result.dividers[1]
+        let orginalNumber = a * b;
+
+        let explenation = document.createTextNode(` Because ${orginalNumber} = ${a}*${b}`);
+        message.appendChild(explenation);
     }
     else {
-        let message = document.createElement("span");
-
         let strong = document.createElement("strong");
         strong.appendChild(document.createTextNode("It's not semiprime"));
-
         message.appendChild(strong);
-        return message;
     }
+
+    return message;
 }
 
 function displayPositiveAlert(alertDiv ,textNode) {

@@ -16,6 +16,37 @@ function checkIfSemiprimeButtonAction() {
         displayNegativeAlert(alertBox, message);
 }
 
+function generateSemiprimesInRangeButtonAction() {
+    let begin = parseInt(document.getElementById("start-of-range").value);
+    let end = parseInt(document.getElementById("end-of-range").value);
+
+    let alertBox = document.getElementById("wrong-range-alert");
+    
+    if (end < begin) {
+        alertBox.classList.remove("d-none");
+        return;
+    }
+    alertBox.classList.add("d-none");
+
+    document.getElementById("display-results").classList.remove("d-none"); //Make results are visible
+
+    let results = semiprimesInRange(begin, end);
+    let outpuList = document.getElementById("display-results");
+
+    putItemsOnList(outpuList, results);
+}
+
+function putItemsOnList(list, items) {
+    for (item of items) {
+        let li = document.createElement("li");
+        li.classList.add("list-group-item");
+
+        li.appendChild(document.createTextNode(item));
+
+        list.appendChild(li);
+    }
+}
+
 function unitTest() {
     let result = isSemiPrime(57);
     if (!result.answer)

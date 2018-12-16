@@ -16,8 +16,18 @@ function buttonAction() {
 }
 
 function checkIfSemiprimeButtonAction() {
-    console.log("Button clicked");
+    //console.log("Button clicked");
+    let number = parseInt(document.getElementById("number"));
 
+    let result = isSemiPrime(number);
+    let message = generateMessage(result);
+
+    let alertBox = document.getElementById("is-semiprime-alert");
+    
+    if (result.answer == true)
+        displayPositiveAlert(alertBox, message);
+    else
+        displayNegativeAlert(alertBox, message);
 }
 
 function unitTest() {
@@ -69,14 +79,27 @@ function findSmalestDivider(number) {
     return number;
 }
 
-function displayPositiveMessage(alertDiv ,textNode) {
+function generateMessage(result) {
+    if (result.answer) {
+
+    }
+    else {
+        let text = document.createTextNode("It's not semiprime");
+        let message = document.createElement("strong");
+        message.appendChild(text);
+
+        return message;
+    }
+}
+
+function displayPositiveAlert(alertDiv ,textNode) {
     alertDiv.innerHTML = "";
     alertDiv.className = "alert alert-success";
     
     alertDiv.appendChild(textNode);
 }
 
-function displayNegativeMessage(alertDiv ,textNode) {
+function displayNegativeAlert(alertDiv ,textNode) {
     alertDiv.innerHTML = "";
     alertDiv.className = "alert alert-danger";
     

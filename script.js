@@ -1,11 +1,8 @@
 window.onload = function () {
-    //document.getElementById("submit-button").onclick = buttonAction;
-
     console.log(unitTest() ? "Tests passed" : "Tests failed");
 };
 
 function checkIfSemiprimeButtonAction() {
-    //console.log("Button clicked");
     let number = parseInt(document.getElementById("number").value);
 
     let result = isSemiPrime(number);

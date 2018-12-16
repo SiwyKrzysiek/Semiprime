@@ -4,17 +4,6 @@ window.onload = function () {
     console.log(unitTest() ? "Tests passed" : "Tests failed");
 };
 
-function buttonAction() {
-    let alertBox = document.getElementById("is-semiprime-alert");
-    
-    //displayPositiveMessage(alertBox, "I did it!");
-    displayNegativeMessage(alertBox, "You have to go soon!");
-
-    //alertBox.classList.add("invisible");
-
-    return false;
-}
-
 function checkIfSemiprimeButtonAction() {
     //console.log("Button clicked");
     let number = parseInt(document.getElementById("number"));
@@ -81,13 +70,16 @@ function findSmalestDivider(number) {
 
 function generateMessage(result) {
     if (result.answer) {
+        let message = document.createElement("span");
 
     }
     else {
-        let text = document.createTextNode("It's not semiprime");
-        let message = document.createElement("strong");
-        message.appendChild(text);
+        let message = document.createElement("span");
 
+        let strong = document.createElement("strong");
+        strong.appendChild(document.createTextNode("It's not semiprime"));
+
+        message.appendChild(strong);
         return message;
     }
 }
